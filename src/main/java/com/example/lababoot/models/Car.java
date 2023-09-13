@@ -1,15 +1,29 @@
 package com.example.lababoot.models;
 
 
+
+import javax.persistence.*;
+import java.lang.annotation.Target;
+
+@Entity
+@Table(name = "Car")
 public class Car {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
     private String enginePower;
+    @Column
     private String bodyType;
+    @Column
     private String color;
+    @Column
     private String manufacture;
-
+    @Column
     private String model;
+    @Column
     private String price;
-
+    @Column
     private String yearOfIssue;
 
 
