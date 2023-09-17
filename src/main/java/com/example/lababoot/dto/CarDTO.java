@@ -2,9 +2,17 @@ package com.example.lababoot.dto;
 
 import com.example.lababoot.exception.InvalidCarException;
 import com.example.lababoot.models.Car;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
+import javax.persistence.Entity;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
+//@Entity
+//@JsonFormat
+@Data
 public class CarDTO {
     private String enginePower;
     private String bodyType;
@@ -26,6 +34,7 @@ public class CarDTO {
 
     public Car toCar() {
         Car car = new Car();
+//        car.setId();
         car.setColor(this.color);
         car.setBodyType(this.bodyType);
         car.setPrice(this.price);
@@ -126,5 +135,31 @@ public class CarDTO {
 
     public void setYearOfIssue(String yearOfIssue) {
         this.yearOfIssue = yearOfIssue;
+    }
+
+    @Override
+    public String toString() {
+        return "CarDTO{" +
+                "enginePower='" + enginePower + '\'' +
+                ", bodyType='" + bodyType + '\'' +
+                ", color='" + color + '\'' +
+                ", manufacture='" + manufacture + '\'' +
+                ", model='" + model + '\'' +
+                ", price='" + price + '\'' +
+                ", yearOfIssue='" + yearOfIssue + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CarDTO carDTO = (CarDTO) o;
+        return Objects.equals(enginePower, carDTO.enginePower) && Objects.equals(bodyType, carDTO.bodyType) && Objects.equals(color, carDTO.color) && Objects.equals(manufacture, carDTO.manufacture) && Objects.equals(model, carDTO.model) && Objects.equals(price, carDTO.price) && Objects.equals(yearOfIssue, carDTO.yearOfIssue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(enginePower, bodyType, color, manufacture, model, price, yearOfIssue);
     }
 }

@@ -27,9 +27,13 @@ public class Car {
     private String yearOfIssue;
 
 
+    public Long getId() {
+        return id;
+    }
 
-
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Car() {}
 
@@ -103,7 +107,8 @@ public class Car {
     @Override
     public String toString() {
         return "Car{" +
-                "enginePower=" + enginePower +
+                "id=" + id +
+                ", enginePower=" + enginePower +
                 ", bodyType='" + bodyType + '\'' +
                 ", color='" + color + '\'' +
                 ", manufacture='" + manufacture + '\'' +

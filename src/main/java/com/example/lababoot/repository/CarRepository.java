@@ -1,8 +1,10 @@
 package com.example.lababoot.repository;
 
 
+import com.example.lababoot.models.Car;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CarRepository {
+public interface CarRepository extends JpaRepository<Car, Long> {
 }
