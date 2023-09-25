@@ -1,21 +1,19 @@
 package com.example.lababoot.controller;
 
-import com.example.lababoot.converter.CarConverter;
+import com.example.lababoot.converter.CarConverterDOM;
 import com.example.lababoot.dto.CarDTO;
+import com.example.lababoot.facade.ConverterFacade;
 import com.example.lababoot.models.Car;
 import com.example.lababoot.response.MessageResponse;
 import com.example.lababoot.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ObjectUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +32,7 @@ public class CarController {
 
     @GetMapping("/xml")
     public ResponseEntity<Object> getCarsFromXml() {
-        List<CarDTO> carsDTO = CarConverter.getCars(URL_XML);
+        List<CarDTO> carsDTO = ConverterFacade.getCars(URL_XML);
         List<Car> cars = new ArrayList<>();
         for (CarDTO car:carsDTO) {
             try {
@@ -53,7 +51,7 @@ public class CarController {
     public ResponseEntity<Object> getCarsFromXmlSAX() {
         List<CarDTO> carsDTO = null;
         try {
-            carsDTO = CarConverter.getCarsFromSax(URL_XML);
+            carsDTO = ConverterFacade.getCarsFromSax(URL_XML);
         } catch (IOException | SAXException | ParserConfigurationException e) {
             throw new RuntimeException(e);
         }
